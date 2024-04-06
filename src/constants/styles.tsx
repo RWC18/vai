@@ -1,0 +1,9 @@
+export const colors = {
+  TEXT_WHITE: '#fff',
+  TEXT_DARK: '#020202',
+  TEXT_GRAY: '#B7B7B7',
+  ORANGE_ACTIVE: '#FFA454',
+  ORANGE_LIGHT: '#FFB472',
+  GRAY_LIGHT: '#B2B1B1',
+  GRAY_DARK: '#666666',
+};
