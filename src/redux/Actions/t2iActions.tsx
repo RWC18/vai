@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AI_API, DEFAULT_NEGATIVE_PROMPT, baseUrl, headers } from './constants';
+import { AI_API, DEFAULT_NEGATIVE_PROMPT, headers } from './constants';
 
 export const t2iActionTypes = {
   SET_PROMPT_T2I: 'SET_PROMPT_T2I',
