@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import { Box } from '@mui/material';
 import Legal from './pages/Legal/Legal';
 import T2IResults from './pages/T2I/T2IResults';
+import I2I from './pages/I2I/I2I';
+import I2IResults from './pages/I2I/I2IResults';
 
 function App() {
   return (
@@ -34,6 +36,22 @@ function App() {
             element={
               <>
                 <T2IResults />
+              </>
+            }
+          />
+          <Route
+            path={'/i2i'}
+            element={
+              <>
+                <I2I />
+              </>
+            }
+          />
+          <Route
+            path={'/i2i/results'}
+            element={
+              <>
+                <I2IResults />
               </>
             }
           />

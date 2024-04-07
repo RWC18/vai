@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DEFAULT_NEGATIVE_PROMPT, baseUrl, headers } from './constants';
+import { DEFAULT_NEGATIVE_PROMPT, headers, AI_API } from './constants';
 
 export const i2iActionTypes = {
   SET_PROMPT_I2I: 'SET_PROMPT_I2I',
@@ -10,25 +10,30 @@ export const i2iActionTypes = {
   SET_ERROR_I2I: 'SET_ERROR_I2I',
 };
 
-export const uploaderI2I =
-  (data: FormData, type: string) => async (dispatch: any) => {
-    try {
-      const res = await axios.post(`${baseUrl}/genai/media/`, data, {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      });
-      dispatch({
-        type: i2iActionTypes.SET_UPLOADED_IMAGE_I2I,
-        data: res.data.url,
-      });
-    } catch (e) {
-      dispatch({
-        type: i2iActionTypes.SET_UPLOADED_IMAGE_I2I,
-        data: null,
-      });
-    }
-  };
+export const uploaderI2I = (data: FormData) => async (dispatch: any) => {
+  try {
+    const res = await axios.post(
+      `${AI_API}/photos/${parseInt((Math.random() * 999999999999) as any)}`,
+      data,
+      {
+        headers: { ...headers, 'Content-Type': 'multipart/form-data' },
+        maxBodyLength: Infinity,
+        maxContentLength: Infinity,
+      }
+    );
+    debugger;
+    dispatch({
+      type: i2iActionTypes.SET_UPLOADED_IMAGE_I2I,
+      data: res.data.data.url,
+    });
+  } catch (e) {
+    debugger;
+    dispatch({
+      type: i2iActionTypes.SET_UPLOADED_IMAGE_I2I,
+      data: null,
+    });
+  }
+};
 
 export const setI2iPrompt = (prompt: string) => async (dispatch: any) => {
   dispatch({
@@ -46,7 +51,7 @@ export const setSelectedStylesI2i =
     });
   };
 
-export const genI2img = (caption: string) => async (dispatch: any) => {
+export const genI2img = (caption: string, url: string) => async (dispatch: any) => {
   try {
     dispatch({
       type: i2iActionTypes.SET_ERROR_I2I,
@@ -61,15 +66,19 @@ export const genI2img = (caption: string) => async (dispatch: any) => {
       data: true,
     });
     const res = await axios.post(
-      `${baseUrl}/genai/t2i`,
+      `${AI_API}/image-to-image/v1/task`,
       {
         caption: caption,
+        image_url: url,
         negative_prompt: DEFAULT_NEGATIVE_PROMPT,
-        size: '1024x1024',
-        model_version: 'PHOTOREALISTIC13',
-        count: 4,
+        strength: 0.7,
+        guidance_scale: 7.5,
+        output_shape: '1024x1024',
         sampling_method: 'Euler A',
-        sampling_steps: 30,
+        resize_mode: 'Just resize',
+        count: 4,
+        model_version: 'PHOTOREALISTIC',
+        num_inference_steps: 100,
       },
       {
         headers,

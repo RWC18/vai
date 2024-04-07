@@ -4,10 +4,11 @@ import Loading from '../../components/Loading/Loading';
 import { Box, Grid, Typography } from '@mui/material';
 import { colors } from '../../constants/styles';
 import {
-  genT2img,
-  setSelectedStylesT2i,
-  setT2iPrompt,
-} from '../../redux/Actions/t2iActions';
+  genI2img,
+  setSelectedStylesI2i,
+  setI2iPrompt,
+  uploaderI2I,
+} from '../../redux/Actions/i2iActions';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import { genStyles } from '../../constants/genStyles';
@@ -17,16 +18,26 @@ import Button from '../../components/Button/Button';
 import ZoomImage from '../../components/ZoomImage/ZoomImage';
 import { forceDownload } from '../../redux/Actions/mainActions';
 
-const T2IResults = () => {
+const I2IResults = () => {
   const dispatch = useDispatch();
 
-  const prompt = useSelector((state: any) => state.t2i.prompt);
-  const loading = useSelector((state: any) => state.t2i.loading);
-  const results = useSelector((state: any) => state.t2i.results);
-  const selectedStyles = useSelector((state: any) => state.t2i.selectedStyles);
+  const prompt = useSelector((state: any) => state.i2i.prompt);
+  const loading = useSelector((state: any) => state.i2i.loading);
+  const results = useSelector((state: any) => state.i2i.results);
+  const selectedStyles = useSelector((state: any) => state.i2i.selectedStyles);
+  const image_url = useSelector((state: any) => state.i2i.image_url);
 
   const [zoomStatus, setZoomStatus] = useState(false);
   const [zoomedImageUrl, setZoomedImageUrl] = useState(null);
+
+  const handleImageChange = async (file: any) => {
+    debugger;
+    if (file) {
+      let data = new FormData();
+      data.append('image', file);
+      await dispatch<any>(uploaderI2I(data));
+    }
+  };
 
   return (
     <Box sx={{ padding: '12px 154px 12px 64px' }}>
@@ -49,7 +60,7 @@ const T2IResults = () => {
               marginBottom: '18px',
             }}
           >
-            Text
+            Image
             <Typography
               component={'span'}
               sx={{
@@ -66,28 +77,54 @@ const T2IResults = () => {
           <Input
             placeholder='The cat sitting near piano ...'
             value={prompt}
-            handleChange={(value: string) => dispatch<any>(setT2iPrompt(value))}
+            handleChange={(value: string) => dispatch<any>(setI2iPrompt(value))}
           />
           <Box sx={{ marginTop: '18px' }}>
-            <Button
-              title='Generate'
-              handleClick={() => {
-                const styles = selectedStyles.map(
-                  (style: {
-                    prompt: string;
-                    thumbnail: string;
-                    title: string;
-                  }) => style.prompt
-                );
-                dispatch<any>(genT2img(prompt + ', ' + styles.join(', ')));
-              }}
-              textColor={colors.TEXT_DARK}
-              bgColor={colors.ORANGE_ACTIVE}
-              padding='14px 0px'
-              hoverColor={colors.ORANGE_LIGHT}
-              isDisabled={prompt.trim().length <= 0}
-            />
+            <Grid container spacing={2} alignItems={'center'} justifyContent={'space-between'}>
+              <Grid item lg={2} md={2} sm={2}>
+                <input
+                  accept='image/*'
+                  id='image-upload'
+                  type='file'
+                  style={{ display: 'none' }}
+                  onChange={(e: any) => handleImageChange(e.target.files[0])}
+                />
+                <label htmlFor='image-upload'>
+                  <Box
+                    sx={{
+                      background: `url(${image_url}) center center / contain`,
+                      backgroundRepeat: 'no-repeat',
+                      width: '100%',
+                      aspectRatio: '1/1',
+                    }}
+                  />
+                </label>
+              </Grid>
+              <Grid item lg={10} md={10} sm={10}>
+                <Button
+                  title='Generate'
+                  handleClick={() => {
+                    const styles = selectedStyles.map(
+                      (style: {
+                        prompt: string;
+                        thumbnail: string;
+                        title: string;
+                      }) => style.prompt
+                    );
+                    dispatch<any>(
+                      genI2img(prompt + ', ' + styles.join(', '), image_url)
+                    );
+                  }}
+                  textColor={colors.TEXT_DARK}
+                  bgColor={colors.ORANGE_ACTIVE}
+                  padding='14px 0px'
+                  hoverColor={colors.ORANGE_LIGHT}
+                  isDisabled={prompt.trim().length <= 0}
+                />
+              </Grid>
+            </Grid>
           </Box>
+
           <Grid
             container
             flexWrap={'wrap'}
@@ -116,7 +153,7 @@ const T2IResults = () => {
                     title={style.title}
                     thumbnail={style.thumbnail}
                     isSelected={selectedStyles.includes(style)}
-                    onSelect={() => dispatch<any>(setSelectedStylesT2i(style))}
+                    onSelect={() => dispatch<any>(setSelectedStylesI2i(style))}
                   />
                 </Grid>
               )
@@ -235,4 +272,4 @@ const T2IResults = () => {
   );
 };
 
-export default T2IResults;
+export default I2IResults;
