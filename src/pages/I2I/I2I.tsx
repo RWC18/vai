@@ -40,6 +40,7 @@ const I2I = () => {
 
   return (
     <Box sx={{ padding: '12px 64px' }}>
+      {imageLoading && <Loading />}
       {loading && <Loading />}
       <Typography
         sx={{
