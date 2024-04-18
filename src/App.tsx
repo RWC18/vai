@@ -8,6 +8,8 @@ import Legal from './pages/Legal/Legal';
 import T2IResults from './pages/T2I/T2IResults';
 import I2I from './pages/I2I/I2I';
 import I2IResults from './pages/I2I/I2IResults';
+import LogoGen from './pages/LogoGen/LogoGen';
+import LogoGenResults from './pages/LogoGen/LogoGenResults';
 
 function App() {
   return (
@@ -44,6 +46,22 @@ function App() {
             element={
               <>
                 <I2I />
+              </>
+            }
+          />
+          <Route
+            path='/logo-gen'
+            element={
+              <>
+                <LogoGen />
+              </>
+            }
+          />
+          <Route
+            path='/logo-gen/results'
+            element={
+              <>
+                <LogoGenResults />
               </>
             }
           />

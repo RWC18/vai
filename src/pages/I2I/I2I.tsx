@@ -101,7 +101,8 @@ const I2I = () => {
                   sx={{
                     background: `url(${image_url}) center center / contain`,
                     backgroundRepeat: 'no-repeat',
-                    width: '100%',
+                    width: '80%',
+                    cursor: 'pointer',
                     aspectRatio: '1/1',
                   }}
                 />
@@ -110,10 +111,11 @@ const I2I = () => {
                   component='span'
                   sx={{
                     border: `1px solid ${colors.TEXT_GRAY}`,
-                    width: '100%',
+                    width: '80%',
                     aspectRatio: '1/1',
                     borderRadius: '12px',
                     transition: '.5s',
+                    cursor: 'pointer',
                     '&:hover': {
                       border: `1px solid ${colors.ORANGE_LIGHT}`,
                       '& svg': {
