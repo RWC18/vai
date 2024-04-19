@@ -3,59 +3,186 @@ import React from 'react';
 import { colors } from '../../constants/styles';
 import { products } from '../../constants/products';
 import Product from '../../components/Product/Product';
+import { pluses } from '../../constants/pluses';
 
 const Home = () => {
   return (
-    <Box sx={{ padding: '24px 64px' }}>
-      <Grid
-        container
-        justifyContent={'center'}
-        alignItems={'center'}
-        flexDirection={'column'}
-        sx={{ textAlign: 'center' }}
-      >
-        <Grid item>
+    <>
+      <Box sx={{ padding: '24px 64px' }}>
+        <Grid container justifyContent={'center'} alignItems={'center'}>
+          <Grid item md={8} lg={8} xs={8} sm={8}>
+            <Typography
+              sx={{
+                marginBottom: '32px',
+                marginTop: '32px',
+                color: colors.TEXT_WHITE,
+                fontSize: '64px',
+                fontWeight: '800',
+                textAlign: 'center',
+              }}
+            >
+              Powering creativity with{' '}
+              <Typography
+                component={'span'}
+                sx={{
+                  color: colors.ORANGE_LIGHT,
+                  fontSize: '64px',
+                  fontWeight: '800',
+                }}
+              >
+                {' '}
+                <br />
+                AI innovation
+              </Typography>
+            </Typography>
+            <Typography
+              sx={{
+                color: colors.TEXT_GRAY,
+                fontSize: '32px',
+                fontWeight: '300',
+                textAlign: 'center',
+                marginBottom: '32px',
+              }}
+            >
+              At VAi Research, we imagine a future where cutting-edge artificial
+              intelligence opens the door to radical creativity. We’re
+              passionate about exploring new frontiers in creative
+              communication, and harnessing the power of AI to drive innovation.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box
+        sx={{
+          height: '400px',
+          backgroundImage: `url("/landing/top-final-1.png")`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          // backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'top',
+        }}
+      />
+      <Box sx={{ padding: '24px 64px' }}>
+        <Typography
+          id='about'
+          sx={{
+            color: colors.TEXT_WHITE,
+            fontSize: '48px',
+            fontWeight: '800',
+            textAlign: 'center',
+            marginTop: '54px',
+            marginBottom: '24px',
+          }}
+        >
+          Unlock Your Creative Potential with VAi
+        </Typography>
+        <Typography
+          sx={{
+            color: colors.TEXT_GRAY,
+            fontSize: '24px',
+            fontWeight: '300',
+            textAlign: 'center',
+          }}
+        >
+          At VAi, we empower you to turn your ideas into reality with ease.
+          Whether you're transforming text into captivating images, enhancing
+          photos into stunning artworks, or crafting professional logos, Vai has
+          you covered.
+        </Typography>
+        <Grid
+          container
+          justifyContent={'space-between'}
+          spacing={5}
+          alignItems={'stretch'}
+          marginTop={'32px'}
+        >
+          {pluses.map(
+            (
+              plus: { title: string; description: string; icon: JSX.Element },
+              id: any
+            ) => (
+              <Grid item md={4} sm={4} lg={4} key={id}>
+                <Box
+                  sx={{
+                    border: `1px solid ${colors.GRAY_LIGHT}50`,
+                    padding: '24px 32px',
+                    borderRadius: '16px',
+                    transition: '.5s',
+                    height: '100%',
+                    '&:hover': {
+                      border: `1px solid ${colors.ORANGE_LIGHT}`,
+                      transform: 'scale(1.02)',
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      backgroundColor: colors.ORANGE_ACTIVE,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '12px',
+                      marginBottom: '12px',
+                    }}
+                  >
+                    {plus.icon}
+                  </Box>
+                  <Typography
+                    sx={{
+                      color: colors.ORANGE_LIGHT,
+                      fontSize: '32px',
+                      fontWeight: '700',
+                      marginBottom: '12px',
+                    }}
+                  >
+                    {plus.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: colors.TEXT_GRAY,
+                      fontSize: '24px',
+                      fontWeight: '300',
+                    }}
+                  >
+                    {plus.description}
+                  </Typography>
+                </Box>
+              </Grid>
+            )
+          )}
+        </Grid>
+      </Box>
+      <Box sx={{ padding: '24px 64px' }}>
+        <Box marginTop={'64px'}>
           <Typography
+            id='products'
             sx={{
               color: colors.TEXT_WHITE,
-              fontSize: '58px',
+              fontSize: '48px',
               fontWeight: '800',
+              textAlign: 'center',
             }}
           >
-            Powering creativity with AI innovation
+            Products
           </Typography>
-        </Grid>
-        <Grid item>
-          <Typography
-            sx={{
-              color: colors.TEXT_GRAY,
-              fontSize: '22px',
-              fontWeight: '300',
-            }}
-          >
-            At VAi Research, we imagine a future where cutting-edge artificial
-            intelligence opens the door to radical creativity. We’re passionate
-            about exploring new frontiers in creative communication, and
-            harnessing the power of AI to drive innovation.
-          </Typography>
-        </Grid>
-      </Grid>
-      <Box marginTop={'64px'}>
-        {products.map(
-          (
-            product: {
-              title: string;
-              url: string;
-              thumbnail: string;
-              description: string;
-            },
-            id
-          ) => (
-            <Product {...product} reverse={(id + 1) % 2 === 0} key={id} />
-          )
-        )}
+          {products.map(
+            (
+              product: {
+                title: string;
+                url: string;
+                thumbnail: string;
+                description: string;
+              },
+              id
+            ) => (
+              <Product {...product} reverse={(id + 1) % 2 === 0} key={id} />
+            )
+          )}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

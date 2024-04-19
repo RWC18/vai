@@ -178,7 +178,11 @@ const LogoGen = () => {
             bgColor={styleColors.ORANGE_ACTIVE}
             padding='14px 0px'
             hoverColor={styleColors.ORANGE_LIGHT}
-            isDisabled={false}
+            isDisabled={
+              brandname.trim().length === 0 ||
+              colors.length === 0 ||
+              industries.length === 0
+            }
           />
         </Grid>
       </Grid>

@@ -1,6 +1,6 @@
 export const menuItems = [
-  { title: 'Products', url: '/' },
-  { title: 'About', url: '/about' },
-  { title: 'Contact us', url: '/contact' },
-  { title: 'Legal', url: '/legal' },
+  { title: 'About us', url: 'about' },
+  { title: 'Products', url: 'products' },
+  // { title: 'Contact us', url: 'contacts' },
+  // { title: 'Legal', url: '/legal' },
 ];

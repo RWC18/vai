@@ -24,7 +24,7 @@ const Product = ({ title, url, thumbnail, description, reverse }: Props) => {
       spacing={3}
       sx={{
         width: '100%',
-        margin: '25px 0px',
+        margin: '10px 0px',
       }}
       columns={{ xs: 6, sm: 6, md: 6, lg: 6 }}
     >
@@ -33,7 +33,7 @@ const Product = ({ title, url, thumbnail, description, reverse }: Props) => {
           container
           justifyContent={'flex-start'}
           alignItems={'flex-start'}
-          spacing={3}
+          spacing={5}
           flexDirection={'column'}
         >
           <Grid item>
@@ -51,8 +51,8 @@ const Product = ({ title, url, thumbnail, description, reverse }: Props) => {
             <Typography
               sx={{
                 color: colors.TEXT_GRAY,
-                fontSize: '20px',
-                fontWeight: '200',
+                fontSize: '24px',
+                fontWeight: '300',
               }}
             >
               {description}

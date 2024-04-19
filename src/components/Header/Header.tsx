@@ -26,6 +26,16 @@ const Header = () => {
     };
   }, []);
 
+  const scrollTO = (id: string) => {
+    const violation = document.getElementById(id) as any;
+    if (violation) {
+      window.scrollTo({
+        top: violation.offsetTop - 100,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -35,7 +45,7 @@ const Header = () => {
         background: scrolling ? '#00000070' : 'transparent',
         backdropFilter: 'blur(10px)',
         transition: '.5s',
-        zIndex: '19'
+        zIndex: '19',
       }}
     >
       <Grid
@@ -64,10 +74,7 @@ const Header = () => {
                 <Typography
                   sx={{
                     cursor: 'pointer',
-                    color:
-                      location.pathname !== menuItem.url
-                        ? colors.TEXT_GRAY
-                        : colors.ORANGE_ACTIVE,
+                    color: colors.TEXT_GRAY,
                     fontSize: '16px',
                     fontWeight: '500',
                     transition: '.5s',
@@ -76,7 +83,11 @@ const Header = () => {
                       transform: 'scale(1.05)',
                     },
                   }}
-                  onClick={() => navigate(menuItem.url)}
+                  onClick={() =>
+                    location.pathname === '/'
+                      ? scrollTO(menuItem.url)
+                      : navigate('/')
+                  }
                 >
                   {menuItem.title}
                 </Typography>
