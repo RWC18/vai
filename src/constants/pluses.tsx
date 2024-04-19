@@ -5,8 +5,6 @@ import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
 
-import { colors } from './styles';
-
 export const pluses = [
   {
     title: 'Intuitive Interface',
