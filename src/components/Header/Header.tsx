@@ -4,6 +4,21 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { colors } from '../../constants/styles';
 import { menuItems } from '../../constants/menu';
 
+export const scrollTO = (id: string) => {
+  const violation = document.getElementById(id) as any;
+  if (violation) {
+    window.scrollTo({
+      top: violation.offsetTop - 100,
+      behavior: 'smooth',
+    });
+  } else {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+};
+
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,16 +40,6 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const scrollTO = (id: string) => {
-    const violation = document.getElementById(id) as any;
-    if (violation) {
-      window.scrollTo({
-        top: violation.offsetTop - 100,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <Box
@@ -59,7 +64,9 @@ const Header = () => {
             src='/logo.svg'
             alt='logo VAi'
             style={{ width: '60px', cursor: 'pointer' }}
-            onClick={() => navigate('/')}
+            onClick={() =>
+              location.pathname === '/' ? scrollTO('undef') : navigate('/')
+            }
           />
         </Grid>
         <Grid item>

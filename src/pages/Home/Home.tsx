@@ -4,8 +4,12 @@ import { colors } from '../../constants/styles';
 import { products } from '../../constants/products';
 import Product from '../../components/Product/Product';
 import { pluses } from '../../constants/pluses';
+import { scrollTO } from '../../components/Header/Header';
+import { useNavigate } from 'react-router-dom';
+import { menuItems } from '../../constants/menu';
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Box sx={{ padding: '24px 64px' }}>
@@ -181,6 +185,83 @@ const Home = () => {
             )
           )}
         </Box>
+      </Box>
+      <Box
+        sx={{
+          padding: '24px 64px',
+          borderTop: `1px solid ${colors.ORANGE_LIGHT}`,
+        }}
+      >
+        <Grid container alignItems={'center'} justifyContent={'space-between'}>
+          <Grid item>
+            <img
+              src='/logo.svg'
+              alt='logo VAi'
+              style={{ width: '60px', cursor: 'pointer' }}
+              onClick={() => scrollTO('undef')}
+            />
+          </Grid>
+          <Grid item>
+            <Grid container spacing={2}>
+              {menuItems.map((menuItem: { title: string; url: string }) => (
+                <Grid item key={menuItem.title}>
+                  <Typography
+                    onClick={() => scrollTO(menuItem.url)}
+                    sx={{
+                      color: colors.TEXT_GRAY,
+                      transition: '.3s',
+                      fontSize: '18px',
+                      cursor: 'pointer',
+                      '&:hover': {
+                        color: colors.ORANGE_LIGHT,
+                      },
+                    }}
+                  >
+                    {menuItem.title}
+                  </Typography>
+                </Grid>
+              ))}
+              {products.map(
+                (
+                  product: {
+                    title: string;
+                    url: string;
+                    thumbnail: string;
+                    description: string;
+                  },
+                  id
+                ) => (
+                  <Grid item key={id}>
+                    <Typography
+                      onClick={() => navigate(product.url)}
+                      sx={{
+                        color: colors.TEXT_GRAY,
+                        transition: '.3s',
+                        fontSize: '18px',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          color: colors.ORANGE_LIGHT,
+                        },
+                      }}
+                    >
+                      {product.title}
+                    </Typography>
+                  </Grid>
+                )
+              )}
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Typography
+              sx={{
+                color: colors.TEXT_GRAY,
+                fontSize: '12px',
+              }}
+            >
+              © {new Date().getFullYear()} VAi, Inc.
+            </Typography>
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
