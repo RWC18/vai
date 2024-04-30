@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from '@mui/material';
 import { colors } from '../../constants/styles';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   genT2img,
   setSelectedStylesT2i,
@@ -12,6 +11,8 @@ import { genStyles } from '../../constants/genStyles';
 import Style from '../../components/Style/Style';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 const T2I = () => {
   const dispatch = useDispatch();
