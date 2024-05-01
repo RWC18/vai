@@ -29,7 +29,7 @@ const ZoomImage = ({ url, handleClose }: Props) => {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
@@ -78,8 +78,14 @@ const ZoomImage = ({ url, handleClose }: Props) => {
           </Grid>
         </Grid>
       </Box>
-
-      <img src={url} width={'40%'} style={{ borderRadius: '16px' }} alt={url} />
+      <Box width={{ md: '40%', xs: '80%' }}>
+        <img
+          src={url}
+          width={'100%'}
+          style={{ borderRadius: '16px' }}
+          alt={url}
+        />
+      </Box>
     </Box>
   );
 };

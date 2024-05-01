@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

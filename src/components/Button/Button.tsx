@@ -25,7 +25,7 @@ const Button = ({
       sx={{
         backgroundColor: !isDisabled ? bgColor : `${bgColor}70`,
         borderRadius: '50px',
-        padding: padding || '12px 64px',
+        padding: padding || { md: '12px 64px', xs: '8px 32px' },
         transition: '.5s',
         '&:hover': {
           backgroundColor: !isDisabled ? hoverColor : `${bgColor}70`,

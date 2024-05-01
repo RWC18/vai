@@ -25,13 +25,13 @@ const LogoGen = () => {
     useSelector((state: any) => state.logo);
 
   return (
-    <Box sx={{ padding: '12px 64px' }}>
+    <Box sx={{ padding: { md: '12px 64px', xs: '8px 32px' } }}>
       {loading && <Loading />}
       <Typography
         sx={{
           color: styleColors.ORANGE_LIGHT,
           textAlign: 'center',
-          fontSize: '48px',
+          fontSize: { md: '48px', xs: '32px' },
           fontWeight: '900',
         }}
       >
@@ -41,7 +41,7 @@ const LogoGen = () => {
           sx={{
             color: styleColors.TEXT_WHITE,
             textAlign: 'center',
-            fontSize: '48px',
+            fontSize: { md: '48px', xs: '32px' },
             fontWeight: '900',
           }}
         >
@@ -53,7 +53,7 @@ const LogoGen = () => {
         sx={{
           color: styleColors.TEXT_GRAY,
           textAlign: 'center',
-          fontSize: '18px',
+          fontSize: { md: '18px', xs: '16px' },
           fontWeight: '300',
         }}
       >
@@ -62,7 +62,7 @@ const LogoGen = () => {
       </Typography>
       <Box
         sx={{
-          marginTop: '24px',
+          marginTop: { md: '24px', xs: '18px' },
         }}
       >
         <Grid
@@ -73,7 +73,7 @@ const LogoGen = () => {
             alignItems: 'center',
           }}
         >
-          <Grid item xs={4} sm={4} md={4} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Input
               placeholder='Brandname*'
               value={brandname}
@@ -82,12 +82,49 @@ const LogoGen = () => {
               }
             />
           </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Input
               placeholder='Tagline (Optional)'
               value={tagline}
               handleChange={(value: string) =>
                 dispatch<any>(setLogoTagline(value))
+              }
+            />
+          </Grid>
+          <Grid
+            item
+            md={0}
+            sm={12}
+            lg={0}
+            xs={12}
+            sx={{
+              display: { md: 'none', xs: 'block' },
+            }}
+          >
+            <Button
+              title='Generate'
+              handleClick={() => {
+                navigate('/logo-gen/results');
+                dispatch<any>(
+                  genLogo(
+                    {
+                      tagline: tagline,
+                      text_prompt: brandname,
+                      industries: industries,
+                      palettes: colors,
+                    },
+                    count
+                  )
+                );
+              }}
+              textColor={styleColors.TEXT_DARK}
+              bgColor={styleColors.ORANGE_ACTIVE}
+              padding='14px 0px'
+              hoverColor={styleColors.ORANGE_LIGHT}
+              isDisabled={
+                brandname.trim().length === 0 ||
+                colors.length === 0 ||
+                industries.length === 0
               }
             />
           </Grid>
@@ -107,9 +144,9 @@ const LogoGen = () => {
           flexWrap={'wrap'}
           justifyContent={'space-between'}
           alignItems={'top'}
-          width={'70%'}
-          spacing={4}
-          columns={9}
+          width={{ md: '70%', xs: '100%' }}
+          spacing={{ md: 4, xs: 1 }}
+          columns={{ md: 9, xs: 3 }}
         >
           {industriesData.map(
             (industry: { title: string; id: string; icon: JSX.Element }) => (
@@ -132,8 +169,9 @@ const LogoGen = () => {
           alignItems={'top'}
           width={'80%'}
           marginTop={'32px'}
+          marginBottom={'32px'}
           spacing={0}
-          columns={10}
+          columns={{ md: 10, xs: 2 }}
         >
           {genColors.map((clr: { title: string; thumbnail: string }) => (
             <Grid item sm={1} md={1} lg={1} xs={1} key={clr.title}>
@@ -151,13 +189,14 @@ const LogoGen = () => {
       <Grid
         container
         sx={{
-          display: 'flex',
+          display: { md: 'flex', xs: 'none' },
           justifyContent: 'center',
           alignItems: 'center',
           marginTop: '28px',
+          marginBottom: '28px',
         }}
       >
-        <Grid item md={1} sm={1} lg={1}>
+        <Grid item md={1} sm={1} lg={1} xs={12}>
           <Button
             title='Generate'
             handleClick={() => {

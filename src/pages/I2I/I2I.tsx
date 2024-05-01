@@ -39,14 +39,14 @@ const I2I = () => {
   };
 
   return (
-    <Box sx={{ padding: '12px 64px' }}>
+    <Box sx={{ padding: { md: '12px 64px', xs: '8px 32px' } }}>
       {imageLoading && <Loading />}
       {loading && <Loading />}
       <Typography
         sx={{
           color: colors.ORANGE_LIGHT,
           textAlign: 'center',
-          fontSize: '48px',
+          fontSize: { md: '48px', xs: '32px' },
           fontWeight: '900',
         }}
       >
@@ -56,7 +56,7 @@ const I2I = () => {
           sx={{
             color: colors.TEXT_WHITE,
             textAlign: 'center',
-            fontSize: '48px',
+            fontSize: { md: '48px', xs: '32px' },
             fontWeight: '900',
           }}
         >
@@ -68,7 +68,7 @@ const I2I = () => {
         sx={{
           color: colors.TEXT_GRAY,
           textAlign: 'center',
-          fontSize: '18px',
+          fontSize: { md: '18px', xs: '16px' },
           fontWeight: '300',
         }}
       >
@@ -76,7 +76,7 @@ const I2I = () => {
       </Typography>
       <Box
         sx={{
-          marginTop: '24px',
+          marginTop: { md: '24px', xs: '18px' },
         }}
       >
         <Grid
@@ -87,7 +87,7 @@ const I2I = () => {
             alignItems: 'center',
           }}
         >
-          <Grid item xs={1} sm={1} md={1} lg={1}>
+          <Grid item xs={3} sm={3} md={1} lg={1}>
             <input
               accept='image/*'
               id='image-upload'
@@ -101,7 +101,7 @@ const I2I = () => {
                   sx={{
                     background: `url(${image_url}) center center / contain`,
                     backgroundRepeat: 'no-repeat',
-                    width: '80%',
+                    width: { md: '80%', xs: '100%' },
                     cursor: 'pointer',
                     aspectRatio: '1/1',
                   }}
@@ -111,7 +111,7 @@ const I2I = () => {
                   component='span'
                   sx={{
                     border: `1px solid ${colors.TEXT_GRAY}`,
-                    width: '80%',
+                    width: { md: '80%', xs: '100%' },
                     aspectRatio: '1/1',
                     borderRadius: '12px',
                     transition: '.5s',
@@ -129,7 +129,7 @@ const I2I = () => {
               )}
             </label>
           </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
+          <Grid item xs={9} sm={9} md={4} lg={4}>
             <Input
               placeholder='The cat sitting near piano ...'
               value={prompt}
@@ -138,7 +138,7 @@ const I2I = () => {
               }
             />
           </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={1}>
+          <Grid item xs={12} sm={12} md={1} lg={1}>
             <Button
               title='Generate'
               handleClick={() => {
@@ -171,12 +171,12 @@ const I2I = () => {
           flexWrap={'wrap'}
           justifyContent={'space-between'}
           alignItems={'top'}
-          width={'60%'}
-          spacing={6}
+          width={{ md: '60%', xs: '100%' }}
+          spacing={{ md: 6, xs: 1 }}
         >
           {genStyles.map(
             (style: { prompt: string; title: string; thumbnail: string }) => (
-              <Grid item sm={2} md={2} lg={2} xs={2}>
+              <Grid item sm={4} md={2} lg={2} xs={4}>
                 <Style
                   title={style.title}
                   thumbnail={style.thumbnail}

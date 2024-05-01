@@ -22,7 +22,7 @@ const LogoGenResults = () => {
   const [zoomedImageUrl, setZoomedImageUrl] = useState(null);
 
   return (
-    <Box sx={{ padding: '12px 154px 12px 64px' }}>
+    <Box sx={{ padding: { md: '12px 154px 12px 64px', xs: '8px  32px' } }}>
       {zoomedImageUrl && zoomStatus && (
         <ZoomImage
           url={zoomedImageUrl}
@@ -34,7 +34,7 @@ const LogoGenResults = () => {
       <Typography
         sx={{
           color: styleColors.TEXT_WHITE,
-          fontSize: '48px',
+          fontSize: { md: '48px', xs: '32px' },
           fontWeight: '900',
           marginBottom: '18px',
           textAlign: 'center',
@@ -45,7 +45,7 @@ const LogoGenResults = () => {
           component={'span'}
           sx={{
             color: styleColors.ORANGE_LIGHT,
-            fontSize: '48px',
+            fontSize: { md: '48px', xs: '32px' },
             fontWeight: '900',
           }}
         >
@@ -54,7 +54,7 @@ const LogoGenResults = () => {
       </Typography>
       {loading && <Loading />}
       <Grid container justifyContent={'center'} alignItems={'center'}>
-        <Grid item xs={8} sm={8} lg={8} md={8}>
+        <Grid item xs={12} sm={12} lg={8} md={8}>
           <Grid
             container
             justifyContent={'center'}
@@ -64,7 +64,7 @@ const LogoGenResults = () => {
           >
             {results &&
               results.map((image: any) => (
-                <Grid item xs={4} sm={4} lg={4} md={4} key={image.id}>
+                <Grid item xs={6} sm={6} lg={4} md={4} key={image.id}>
                   <Box
                     sx={{
                       background: `url('${image.result_cdn_url}')`,
@@ -163,9 +163,9 @@ const LogoGenResults = () => {
           </Grid>
         </Grid>
         {results.length > 0 && (
-          <Grid item xs={8} sm={8} lg={8} md={8} marginTop={'24px'}>
+          <Grid item xs={12} sm={12} lg={8} md={8} marginTop={'24px'}>
             <Grid container justifyContent={'flex-end'} width={'100%'}>
-              <Grid item xs={2} sm={2} lg={2} md={2} marginRight={'12px'}>
+              <Grid item xs={3} sm={3} lg={2} md={2} marginRight={'12px'}>
                 <Button
                   title='Back'
                   handleClick={() => {
@@ -178,7 +178,7 @@ const LogoGenResults = () => {
                   isDisabled={false}
                 />
               </Grid>
-              <Grid item xs={3} sm={3} lg={3} md={3}>
+              <Grid item xs={5} sm={5} lg={3} md={3}>
                 <Button
                   title='Regenerate'
                   handleClick={() => {

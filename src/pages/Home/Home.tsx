@@ -12,15 +12,15 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Box sx={{ padding: '24px 64px' }}>
+      <Box sx={{ padding: { md: '24px 64px', xs: '12px 32px' } }}>
         <Grid container justifyContent={'center'} alignItems={'center'}>
-          <Grid item md={8} lg={8} xs={8} sm={8}>
+          <Grid item md={8} lg={8} xs={12} sm={12}>
             <Typography
               sx={{
-                marginBottom: '32px',
-                marginTop: '32px',
+                marginBottom: { md: '32px', xs: '12px' },
+                marginTop: { md: '32px', xs: '12px' },
                 color: colors.TEXT_WHITE,
-                fontSize: '64px',
+                fontSize: { md: '64px', xs: '32px' },
                 fontWeight: '800',
                 textAlign: 'center',
               }}
@@ -30,7 +30,7 @@ const Home = () => {
                 component={'span'}
                 sx={{
                   color: colors.ORANGE_LIGHT,
-                  fontSize: '64px',
+                  fontSize: { md: '64px', xs: '32px' },
                   fontWeight: '800',
                 }}
               >
@@ -42,10 +42,10 @@ const Home = () => {
             <Typography
               sx={{
                 color: colors.TEXT_GRAY,
-                fontSize: '32px',
+                fontSize: { md: '32', xs: '18px' },
                 fontWeight: '300',
                 textAlign: 'center',
-                marginBottom: '32px',
+                marginBottom: { md: '32', xs: '12px' },
               }}
             >
               At VAi Research, we imagine a future where cutting-edge artificial
@@ -60,21 +60,21 @@ const Home = () => {
         sx={{
           height: '400px',
           backgroundImage: `url("/landing/top-final-1.png")`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          // backgroundRepeat: 'no-repeat',
+          backgroundAttachment: { md: 'fixed', xs: 'default' },
+          backgroundSize: { md: 'cover', xs: 'contain' },
+          backgroundRepeat: { md: 'repeat', xs: 'no-repeat' },
           backgroundPosition: 'top',
         }}
       />
-      <Box sx={{ padding: '24px 64px' }}>
+      <Box sx={{ padding: { md: '24px 64px', xs: '12px 32px' } }}>
         <Typography
           id='about'
           sx={{
             color: colors.TEXT_WHITE,
-            fontSize: '48px',
+            fontSize: { md: '48px', xs: '24px' },
             fontWeight: '800',
             textAlign: 'center',
-            marginTop: '54px',
+            marginTop: { md: '54px', xs: '22px' },
             marginBottom: '24px',
           }}
         >
@@ -83,7 +83,7 @@ const Home = () => {
         <Typography
           sx={{
             color: colors.TEXT_GRAY,
-            fontSize: '24px',
+            fontSize: { md: '24px', xs: '16px' },
             fontWeight: '300',
             textAlign: 'center',
           }}
@@ -98,18 +98,18 @@ const Home = () => {
           justifyContent={'space-between'}
           spacing={5}
           alignItems={'stretch'}
-          marginTop={'32px'}
+          marginTop={{ md: '32px', xs: '12px' }}
         >
           {pluses.map(
             (
               plus: { title: string; description: string; icon: JSX.Element },
               id: any
             ) => (
-              <Grid item md={4} sm={4} lg={4} key={id}>
+              <Grid item md={4} sm={4} lg={4} xs={12} key={id}>
                 <Box
                   sx={{
                     border: `1px solid ${colors.GRAY_LIGHT}50`,
-                    padding: '24px 32px',
+                    padding: { md: '24px 32px', xs: '18px' },
                     borderRadius: '16px',
                     transition: '.5s',
                     height: '100%',
@@ -125,10 +125,10 @@ const Home = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: '52px',
-                      height: '52px',
-                      borderRadius: '12px',
-                      marginBottom: '12px',
+                      width: { md: '52px', xs: '48px' },
+                      height: { md: '52px', xs: '48px' },
+                      borderRadius: { md: '12px', xs: '8px' },
+                      marginBottom: { md: '12px', xs: '8px' },
                     }}
                   >
                     {plus.icon}
@@ -136,7 +136,7 @@ const Home = () => {
                   <Typography
                     sx={{
                       color: colors.ORANGE_LIGHT,
-                      fontSize: '32px',
+                      fontSize: { md: '32px', xs: '20px' },
                       fontWeight: '700',
                       marginBottom: '12px',
                     }}
@@ -146,7 +146,7 @@ const Home = () => {
                   <Typography
                     sx={{
                       color: colors.TEXT_GRAY,
-                      fontSize: '24px',
+                      fontSize: { md: '24px', xs: '16px' },
                       fontWeight: '300',
                     }}
                   >
@@ -158,13 +158,13 @@ const Home = () => {
           )}
         </Grid>
       </Box>
-      <Box sx={{ padding: '24px 64px' }}>
-        <Box marginTop={'64px'}>
+      <Box sx={{ padding: { md: '24px 64px', xs: '12px 32px' } }}>
+        <Box marginTop={{ md: '64px', xs: '32px' }}>
           <Typography
             id='products'
             sx={{
               color: colors.TEXT_WHITE,
-              fontSize: '48px',
+              fontSize: { md: '48px', xs: '24px' },
               fontWeight: '800',
               textAlign: 'center',
             }}
@@ -188,11 +188,16 @@ const Home = () => {
       </Box>
       <Box
         sx={{
-          padding: '24px 64px',
+          padding: { md: '24px 64px', xs: '12px 32px' },
           borderTop: `1px solid ${colors.ORANGE_LIGHT}`,
         }}
       >
-        <Grid container alignItems={'center'} justifyContent={'space-between'}>
+        <Grid
+          container
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          flexDirection={{ md: 'row', xs: 'column' }}
+        >
           <Grid item>
             <img
               src='/logo.svg'
@@ -202,15 +207,22 @@ const Home = () => {
             />
           </Grid>
           <Grid item>
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={2}
+              flexDirection={{ md: 'row', xs: 'column' }}
+            >
               {menuItems.map((menuItem: { title: string; url: string }) => (
                 <Grid item key={menuItem.title}>
                   <Typography
                     onClick={() => scrollTO(menuItem.url)}
                     sx={{
+                      textAlign: 'center',
                       color: colors.TEXT_GRAY,
                       transition: '.3s',
-                      fontSize: '18px',
+                      fontSize: { md: '18px', xs: '12px' },
+                      marginTop: { md: '0px', xs: '4px' },
+                      marginBottom: { md: '0px', xs: '4px' },
                       cursor: 'pointer',
                       '&:hover': {
                         color: colors.ORANGE_LIGHT,
@@ -236,9 +248,12 @@ const Home = () => {
                       onClick={() => navigate(product.url)}
                       sx={{
                         color: colors.TEXT_GRAY,
+                        textAlign: 'center',
                         transition: '.3s',
-                        fontSize: '18px',
+                        fontSize: { md: '18px', xs: '12px' },
                         cursor: 'pointer',
+                        marginTop: { md: '0px', xs: '4px' },
+                        marginBottom: { md: '0px', xs: '4px' },
                         '&:hover': {
                           color: colors.ORANGE_LIGHT,
                         },
@@ -255,7 +270,7 @@ const Home = () => {
             <Typography
               sx={{
                 color: colors.TEXT_GRAY,
-                fontSize: '12px',
+                fontSize: { md: '12px', xs: '8px' },
               }}
             >
               © {new Date().getFullYear()} VAi, Inc.

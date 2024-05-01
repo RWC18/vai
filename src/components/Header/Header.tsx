@@ -44,7 +44,7 @@ const Header = () => {
   return (
     <Box
       sx={{
-        padding: '22px 64px',
+        padding: { md: '22px 64px', xs: '12px 32px' },
         width: '100%',
         position: 'fixed',
         background: scrolling ? '#00000070' : 'transparent',

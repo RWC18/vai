@@ -29,7 +29,11 @@ const T2IResults = () => {
   const [zoomedImageUrl, setZoomedImageUrl] = useState(null);
 
   return (
-    <Box sx={{ padding: '12px 154px 12px 64px' }}>
+    <Box
+      sx={{
+        padding: { md: '12px 154px 12px 64px', xs: '8px  32px' },
+      }}
+    >
       {zoomedImageUrl && zoomStatus && (
         <ZoomImage
           url={zoomedImageUrl}
@@ -39,12 +43,50 @@ const T2IResults = () => {
         />
       )}
       {loading && <Loading />}
-      <Grid container justifyContent={'space-between'} alignItems={'center'}>
-        <Grid item xs={5} sm={5} lg={5} md={5}>
+      <Box
+        sx={{
+          display: {
+            md: 'none',
+            xs: 'flex',
+          },
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          sx={{
+            color: colors.ORANGE_LIGHT,
+            fontSize: { md: '48px', xs: '32px' },
+            fontWeight: '900',
+            marginBottom: '18px',
+          }}
+        >
+          Text
+          <Typography
+            component={'span'}
+            sx={{
+              color: colors.TEXT_WHITE,
+              fontSize: { md: '48px', xs: '32px' },
+              fontWeight: '900',
+            }}
+          >
+            {' '}
+            to{' '}
+          </Typography>
+          Image
+        </Typography>
+      </Box>
+      <Grid
+        container
+        justifyContent={'space-between'}
+        alignItems={'center'}
+        flexDirection={{ md: 'row', xs: 'column-reverse' }}
+      >
+        <Grid item xs={12} sm={12} lg={5} md={5}>
           <Typography
             sx={{
               color: colors.ORANGE_LIGHT,
-              fontSize: '48px',
+              fontSize: { md: '48px', xs: '0' },
               fontWeight: '900',
               marginBottom: '18px',
             }}
@@ -54,7 +96,7 @@ const T2IResults = () => {
               component={'span'}
               sx={{
                 color: colors.TEXT_WHITE,
-                fontSize: '48px',
+                fontSize: { md: '48px', xs: '0' },
                 fontWeight: '900',
               }}
             >
@@ -83,7 +125,7 @@ const T2IResults = () => {
               }}
               textColor={colors.TEXT_DARK}
               bgColor={colors.ORANGE_ACTIVE}
-              padding='14px 0px'
+              padding={'14px 0px'}
               hoverColor={colors.ORANGE_LIGHT}
               isDisabled={prompt.trim().length <= 0}
             />
@@ -94,7 +136,7 @@ const T2IResults = () => {
             justifyContent={'flex-start'}
             alignItems={'top'}
             sx={{
-              maxHeight: '600px',
+              maxHeight: { md: '600px', xs: 'auto' },
               overflowX: 'hidden',
               overflowY: 'scroll',
               marginTop: '42px',
@@ -105,10 +147,10 @@ const T2IResults = () => {
               (style: { prompt: string; title: string; thumbnail: string }) => (
                 <Grid
                   item
-                  sm={2}
+                  sm={4}
                   md={2}
                   lg={2}
-                  xs={2}
+                  xs={4}
                   key={style.title}
                   sx={{ paddingTop: '0px !important', marginBottom: '12px' }}
                 >
@@ -123,13 +165,21 @@ const T2IResults = () => {
             )}
           </Grid>
         </Grid>
-        <Grid item xs={5} sm={5} lg={5} md={5}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          lg={5}
+          md={5}
+          width={{ md: 'auto', xs: '100%' }}
+        >
           <Grid
             container
             justifyContent={'space-between'}
             alignItems={'center'}
             flexWrap={'wrap'}
-            spacing={4}
+            spacing={{ md: 4, xs: 2 }}
+            // width={{ md: '100%', xs: '100%' }}
           >
             {results &&
               results.map((image: any) => (

@@ -19,28 +19,31 @@ const Product = ({ title, url, thumbnail, description, reverse }: Props) => {
       container
       justifyContent={'space-between'}
       alignItems={'center'}
-      flexWrap={'nowrap'}
-      flexDirection={reverse ? 'row-reverse' : 'row'}
-      spacing={3}
+      spacing={{ md: 3, xs: 0 }}
       sx={{
         width: '100%',
-        margin: '10px 0px',
+        margin: { md: '10px 0px', xs: '32px 0px' },
+        flexWrap: { md: 'no-wrap', xs: 'wrap' },
+        flexDirection: {
+          md: reverse ? 'row-reverse' : 'row',
+          xs: 'column-reverse',
+        },
       }}
       columns={{ xs: 6, sm: 6, md: 6, lg: 6 }}
     >
-      <Grid item xs={4} sm={4} md={4} lg={4}>
+      <Grid item xs={12} sm={4} md={4} lg={4}>
         <Grid
           container
-          justifyContent={'flex-start'}
-          alignItems={'flex-start'}
-          spacing={5}
+          justifyContent={{ md: 'flex-start', xs: 'center' }}
+          alignItems={{ md: 'flex-start', xs: 'center' }}
+          spacing={{ md: 5, xs: 1 }}
           flexDirection={'column'}
         >
           <Grid item>
             <Typography
               sx={{
                 color: colors.ORANGE_LIGHT,
-                fontSize: '48px',
+                fontSize: { md: '48px', xs: '22px' },
                 fontWeight: '800',
               }}
             >
@@ -51,8 +54,9 @@ const Product = ({ title, url, thumbnail, description, reverse }: Props) => {
             <Typography
               sx={{
                 color: colors.TEXT_GRAY,
-                fontSize: '24px',
+                fontSize: { md: '24px', xs: '16px' },
                 fontWeight: '300',
+                textAlign: { md: 'left', xs: 'center' },
               }}
             >
               {description}
@@ -70,7 +74,7 @@ const Product = ({ title, url, thumbnail, description, reverse }: Props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={2} sm={2} md={2} lg={2}>
+      <Grid item xs={12} sm={2} md={2} lg={2}>
         <img src={`/Products/${thumbnail}`} width={'100%'} alt={title} />
       </Grid>
     </Grid>
