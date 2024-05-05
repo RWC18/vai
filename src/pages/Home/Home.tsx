@@ -248,7 +248,7 @@ const Home = () => {
                       onClick={() => navigate(product.url)}
                       sx={{
                         color: colors.TEXT_GRAY,
-                        textAlign: 'center',
+                        textAlign: 'center', 
                         transition: '.3s',
                         fontSize: { md: '18px', xs: '12px' },
                         cursor: 'pointer',
